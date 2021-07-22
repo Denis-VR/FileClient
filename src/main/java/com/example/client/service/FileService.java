@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +25,7 @@ public class FileService {
 
 	public void generateNewPathDto(PathName path_name) {
 		log.info("Попытка просканировать путь: " + path_name.getName());
+		//without it there will be problems with jsp
 		String pathNormal = path_name.getName().replace("\\", "/");
 
 		File file = new File(path_name.getName());
@@ -33,15 +35,16 @@ public class FileService {
 		}
 
 		PathDto pathDto = new PathDto(
-				new Date().toString(), //TODO: change format
+				new SimpleDateFormat("dd.MM.yyyy HH:mm").format(new Date()),
 				pathNormal,
 				defineNestedFiles(file)
 		);
 
 		try {
 			clientService.sendNewPath(pathDto);
+			log.info("Файлы успешно отправлены. Дубликаты сервер не добавит в базу.");
 		} catch (Exception e) {
-			log.info("Ошибка отправки файлов");
+			log.info("Ошибка отправки файлов"); //TODO: C:\Users\Asus\Videos\Captures fail
 			e.printStackTrace();
 		}
 	}
