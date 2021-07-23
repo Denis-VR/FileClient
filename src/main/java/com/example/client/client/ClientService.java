@@ -43,4 +43,13 @@ public class ClientService {
 				}
 		).getBody();
 	}
+
+	public Boolean checkFileExist(String path) {
+		return restTemplate.exchange(
+				SERVER_URL + "/fileExist?path=" + path,
+				HttpMethod.GET,
+				null,
+				Boolean.class
+		).getBody();
+	}
 }

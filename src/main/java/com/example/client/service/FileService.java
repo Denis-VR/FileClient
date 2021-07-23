@@ -30,7 +30,12 @@ public class FileService {
 
 		File file = new File(path_name.getName());
 		if (!file.exists()) {
-			log.info("Такого пути не сущетсвует");
+			log.info("Пути не сущетсвует");
+			return;
+		}
+
+		if (clientService.checkFileExist(pathNormal)) {
+			log.info("Путь уже есть в базе");
 			return;
 		}
 
