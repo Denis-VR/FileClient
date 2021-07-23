@@ -44,7 +44,7 @@ public class FileService {
 			clientService.sendNewPath(pathDto);
 			log.info("Файлы успешно отправлены. Дубликаты сервер не добавит в базу.");
 		} catch (Exception e) {
-			log.info("Ошибка отправки файлов"); //TODO: C:\Users\Asus\Videos\Captures fail
+			log.info("Ошибка отправки файлов");
 			e.printStackTrace();
 		}
 	}
