@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Welcome</title>
+    <title>Директории и файлы</title>
 </head>
 <body>
 <h1>Директории и файлы</h1>
